@@ -1,4 +1,4 @@
-export function write(value: number, { currency = false }: { currency?: boolean }): string {
+function write(value: number, { currency = false }: { currency?: boolean } = {}): string {
   if (value === 0) return "zero";
 
   const integerPart = Math.floor(value);
@@ -49,4 +49,4 @@ function convertLargeNumberToWords(number: number, divisor: number, singular: st
   return `${quotientWords}${remainderWords}`;
 }
 
-console.log(write(123_456.78, { currency: false }))
+export { write };
