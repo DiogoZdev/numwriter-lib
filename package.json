@@ -1,18 +1,35 @@
 {
   "name": "numwriter",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "A simple library to convert numbers into written words in Portuguese.",
-  "main": "dist/write.js",
+  "main": "dist/numwriter.js",
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "test": "jest"
   },
-  "keywords": ["write", "number", "portuguese", "português", "extenso", "escrever", "números"],
+  "keywords": [
+    "write",
+    "number",
+    "portuguese",
+    "português",
+    "extenso",
+    "escrever",
+    "números"
+  ],
   "author": "DiogoZDev",
   "bugs": "https://github.com/diogozdev/writenum-lib/issues",
   "license": "MIT",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "devDependencies": {
+    "@types/jest": "^29.5.12",
     "node-ts": "^6.1.2",
+    "ts-jest": "^29.2.5",
     "typescript": "^5.5.4"
+  },
+  "dependencies": {
+    "jest": "^29.7.0",
+    "ts-node": "^10.9.2"
   }
 }
