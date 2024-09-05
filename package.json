@@ -9,12 +9,15 @@
   },
   "keywords": [
     "write",
-    "number",
+    "escrever",
+    "numbers",
+    "números",
     "portuguese",
     "português",
-    "extenso",
-    "escrever",
-    "números"
+    "spanish",
+    "español",
+    "english",
+    "extenso"
   ],
   "author": "DiogoZDev",
   "bugs": "https://github.com/diogozdev/writenum-lib/issues",
