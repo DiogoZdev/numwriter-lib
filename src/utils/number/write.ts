@@ -109,7 +109,7 @@ const conf: { locale: Locale } = {
   locale: 'pt-BR',
 }
 
-export function write(value: number, { currency = null, locale = 'en-US' }: { currency?: Currency | null; locale?: Locale;  } = {}): string {
+function write(value: number, { currency = null, locale = 'en-US' }: { currency?: Currency | null; locale?: Locale;  } = {}): string {
   conf.locale = locale;
 
   let plural = ''
@@ -185,3 +185,5 @@ function convertLargeNumberToWords(number: number, divisor: number, singular: st
 
   return `${quotientWords}${remainderWords}`
 }
+
+export { write }

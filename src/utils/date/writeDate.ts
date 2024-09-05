@@ -1,7 +1,7 @@
-import { ELocale } from "../../types";
+import { Locale } from "../../types";
 
 
-const months: Record<ELocale, string[]> = {
+const months: Record<Locale, string[]> = {
     'pt-BR': ["", "janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"],
     'en-US': ["", "january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"],
     'es-ES': ["", "enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"],
@@ -19,8 +19,8 @@ function addOrdinal(day: string): string {
     return `${day.startsWith('0') ? day.slice(1) : day}${ordinal}`
 }
 
-function writeDate(date: string, config: { locale?: ELocale | string } = {}): string {
-    const locale: ELocale = config?.locale as ELocale || ELocale.PT;
+function writeDate(date: string, config: { locale?: Locale | string } = {}): string {
+    const locale: Locale = config?.locale as Locale || 'en-US';
     let [year, month, day]: string[] = date.split('-');
 
     if (Number(month) > Number(year)) return 'invalid date format'

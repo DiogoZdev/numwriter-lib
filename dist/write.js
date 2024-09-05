@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.write = write;
 function write(value, _a) {
-    var _b = _a.currency, currency = _b === void 0 ? false : _b;
+    var _b = _a === void 0 ? {} : _a, _c = _b.currency, currency = _c === void 0 ? false : _c;
     if (value === 0)
         return "zero";
     var integerPart = Math.floor(value);
@@ -45,4 +45,3 @@ function convertLargeNumberToWords(number, divisor, singular, plural) {
     var remainderWords = remainder ? (remainder < 100 ? " e " : " ") + convertIntegerToWords(remainder) : "";
     return "".concat(quotientWords).concat(remainderWords);
 }
-console.log(write(123456.78, { currency: false }));

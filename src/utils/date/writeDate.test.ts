@@ -7,12 +7,12 @@ describe('writeDate', () => {
     })
 
     it('should write date in Portuguese-BR', () => {
-        const res = writeDate('2022-03-20');
+        const res = writeDate('2022-03-20', { locale: 'pt-BR' });
         expect(res).toBe('20 de março de 2022');    
     });
 
     it('should write another date in Portuguese-BR', () => {
-        const res = writeDate('2022-12-19');
+        const res = writeDate('2022-12-19', { locale: 'pt-BR' });
         expect(res).toBe('19 de dezembro de 2022');    
     });
 
