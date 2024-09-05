@@ -1,12 +1,3 @@
-export enum ELocale {
-    PT = 'pt-BR',
-    EN = 'en-US',
-    ES = 'es-ES',
-}
+export type Locale = 'pt-BR' | 'en-US' | 'es-ES';
 
-export enum ECurrency {
-    BRL = 'BRL',
-    USD = 'USD',
-    EUR = 'EUR',
-    PESO = 'PESO',
-}
+export type Currency = 'BRL' | 'DOL' | 'EUR' | 'PESO'

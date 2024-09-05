@@ -1,6 +1,6 @@
-import { ECurrency, ELocale } from "../../types";
+import { Currency, Locale } from "../../types";
 
-const numbers: Record<ELocale, { units: string[], tens: string[], hundreds: string[] }> = {
+const numbers: Record<Locale, { units: string[], tens: string[], hundreds: string[] }> = {
   'pt-BR': {
     units: ['', 'um', 'dois', 'três', 'quatro', 'cinco', 'seis', 'sete', 'oito', 'nove', 'dez', 'onze', 'doze', 'treze', 'quatorze', 'quinze', 'dezesseis', 'dezessete', 'dezoito', 'dezenove'],
     tens: ['', '', 'vinte', 'trinta', 'quarenta', 'cinquenta', 'sessenta', 'setenta', 'oitenta', 'noventa'],
@@ -18,7 +18,7 @@ const numbers: Record<ELocale, { units: string[], tens: string[], hundreds: stri
   },
 }
 
-const bigNumbers: Record<ELocale, Record<string, { singular: string; plural: string }>> = {
+const bigNumbers: Record<Locale, Record<string, { singular: string; plural: string }>> = {
   'pt-BR': {
     thousand: {
       singular: 'mil',
@@ -63,14 +63,14 @@ const bigNumbers: Record<ELocale, Record<string, { singular: string; plural: str
   },
 }
 
-const words: Record<ELocale, Record<string, string>> = {
+const words: Record<Locale, Record<string, string>> = {
   'pt-BR': {
     connection: 'e',
-    divisor: 'ponto',
+    divisor: 'vírgula',
   },
   'en-US': {
     connection: '',
-    divisor: 'dot',
+    divisor: 'point',
   },
   'es-ES': {
     connection: 'y',
@@ -78,14 +78,14 @@ const words: Record<ELocale, Record<string, string>> = {
   },
 }
 
-const currencyValues: Record<ECurrency, { singular: string; plural: string, smallSingular: string; smallPlural: string }> = {
+const currencyValues: Record<Currency, { singular: string; plural: string, smallSingular: string; smallPlural: string }> = {
   BRL: {
     singular: 'real',
     plural: 'reais',
     smallSingular: 'centavo',
     smallPlural: 'centavos',
   },
-  USD: {
+  DOL: {
     singular: 'dollar',
     plural: 'dollars',
     smallSingular: 'cent',
@@ -105,11 +105,11 @@ const currencyValues: Record<ECurrency, { singular: string; plural: string, smal
   },
 }
 
-const conf = {
-  locale: ELocale.PT,
+const conf: { locale: Locale } = {
+  locale: 'pt-BR',
 }
 
-export function write(value: number, { currency = null, locale = ELocale.EN }: { currency?: ECurrency | null; locale?: ELocale;  } = {}): string {
+export function write(value: number, { currency = null, locale = 'en-US' }: { currency?: Currency | null; locale?: Locale;  } = {}): string {
   conf.locale = locale;
 
   let plural = ''
@@ -135,16 +135,31 @@ export function write(value: number, { currency = null, locale = ELocale.EN }: {
 
   if (decimalPart > 0) {
     decimalWords = convertIntegerToWords(decimalPart);
-    return `${integerWords}${currency ? `${decimalPart > 1 ? ` ${plural}` : ` ${singular}`}${words[conf.locale].connection ? ' '+words[conf.locale].connection : ''}` : ` ${words[conf.locale].divisor}`} ${decimalWords}${currency ? decimalPart > 1 ? ` ${smallPlural}` : ` ${smallSingular}` : ''}`.replace('  ', ' ');
+    return `${integerWords}${currency 
+      ? `${decimalPart > 1 ? ` ${plural}` 
+      : ` ${singular}`}${words[conf.locale].connection 
+        ? ' '+words[conf.locale].connection : ''}` 
+        : ` ${words[conf.locale].divisor}`} ${decimalWords}${currency 
+          ? decimalPart > 1 ? ` ${smallPlural}` 
+          : ` ${smallSingular}` 
+            : ''}`.replaceAll('  ', ' ');
   }
 
-  return String(`${integerWords}${currency ? decimalPart > 1 ? ` ${plural}` : ` ${singular}` : ''}`).replace('  ', ' ');
+  return String(`${integerWords}${currency ? integerPart > 1 ? ` ${plural}` : ` ${singular}` : ''}`).replaceAll('  ', ' ');
+}
+
+function getHundred() {
+  return {
+    'en-US': 'one hundred',
+    'es-ES': 'cien',
+    'pt-BR': 'cem',
+  }[conf.locale];
 }
   
 function convertIntegerToWords(number: number): string {
   if (number < 20) return numbers[conf.locale].units[number];
   if (number < 100) return `${numbers[conf.locale].tens[Math.floor(number / 10)]}${numbers[conf.locale].units[number % 10] ? ` ${words[conf.locale].connection} ` + numbers[conf.locale].units[number % 10] : ""}`;
-  if (number === 100) return "cem";
+  if (number === 100) return getHundred();
   if (number < 1000) {
     const remainder = number % 100;
     return `${numbers[conf.locale].hundreds[Math.floor(number / 100)]}${remainder ? ` ${words[conf.locale].connection} ` + convertIntegerToWords(remainder) : ""}`;
