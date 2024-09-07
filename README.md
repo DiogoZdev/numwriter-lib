@@ -1,7 +1,7 @@
 # numwriter
 
-This is a simple lib to convert numbers in their writen form.
-Initially it's only working in Portuguese-BR.
+This is a simple lib to convert numbers and dater in their writen form.
+Working in Portuguese-BR, Spanish and English.
 
 ## Installing
 
