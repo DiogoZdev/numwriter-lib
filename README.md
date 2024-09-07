@@ -30,13 +30,13 @@ import { write } from 'numwriter'
 write(320);
 // returns 'three hundred twenty'
 
-write(321, { locale: 'pt-BR' });
+write(320, { locale: 'pt-BR' });
 // returns 'trezentos e vinte'
 
-write(321.50, { currency: 'DOL' });
+write(320.50, { currency: 'DOL' });
 // returns 'three hundred twenty dollars and fifty cents'
 
-write(321.50, { currency: 'EUR', locale: 'es-ES' });
+write(320.50, { currency: 'EUR', locale: 'es-ES' });
 // returns 'trecientos y veinte euros y cincuenta cents'
 ```
 
