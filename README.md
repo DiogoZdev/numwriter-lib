@@ -1,7 +1,9 @@
+<img src="https://github.com/user-attachments/assets/0bfa22c0-9055-4988-8da6-ecf087f2a7ae" width="150"/>
+
 # numwriter
 
-This is a simple lib to convert numbers and dater in their writen form.
-Working in Portuguese-BR, Spanish and English.
+Convert numbers and dates in their writen form. <br/>
+Numwriter supports Portuguese-BR, Spanish and English.
 
 ## Installing
 
