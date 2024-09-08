@@ -1,6 +1,6 @@
 {
   "name": "numwriter",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A simple library to convert numbers into written words in Portuguese.",
   "main": "dist/numwriter.js",
   "scripts": {
